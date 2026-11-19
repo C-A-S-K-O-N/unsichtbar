@@ -19,7 +19,7 @@ streichen. Sobald es drei eigene Beiträge gibt: im Chat einfügen und sagen
 - **Kyrill Elsensohn (eigenes Profil, Ich-Form, Anrede «Sie»):** 18 Jahre,
   letztes Maturajahr an der Kantonsschule Uetikon am See. Business Development
   & Digital Marketing Manager bei digitalONLY AG (freiberuflich, seit Sep. 2026,
-  Zürich, hybrid): B2B-Vertrieb, Neukundengewinnung, Termine mit Unternehmern.
+  Zug, hybrid): B2B-Vertrieb, Neukundengewinnung, Termine mit Unternehmern.
   Vertriebsmitarbeiter bei Verling Solutions (freiberuflich, seit Sep. 2026).
   Praktikant im Vertrieb bei Vortex Capital (Apr. 2024 bis Feb. 2026).
   Model: Paris Fashion Week Okt. 2026, vertrat FDLA als jüngstes Model
