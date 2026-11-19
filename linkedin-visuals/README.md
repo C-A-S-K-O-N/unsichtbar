@@ -9,3 +9,7 @@ Standbilder und Videos mit haptischen Bewegungen für LinkedIn-Beiträge,
 - `render.js <id> still|video` schreibt `out/<id>.png` bzw. `out/<id>.mp4`
 
 Braucht Python 3, Node mit Playwright (Chromium) und ffmpeg.
+
+Persönliche Fotos (z. B. `scenes_kyrill.py`) liegen nur lokal in `privat/` und
+werden nicht eingecheckt. Für einen neuen Render das Foto dort ablegen
+(`privat/kyrill-laufsteg.jpg`), sonst bleibt die Fotofläche leer.

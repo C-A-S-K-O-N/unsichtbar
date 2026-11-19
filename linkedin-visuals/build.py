@@ -9,6 +9,7 @@ import scenes_workspace_do  # noqa: F401
 import scenes_workspace_web  # noqa: F401
 import scenes_cinematic  # noqa: F401
 import scenes_kw47  # noqa: F401
+import scenes_kyrill  # noqa: F401
 eng = open(os.path.join(here, "engine.html")).read()
 os.makedirs(os.path.join(here, "build"), exist_ok=True)
 meta = {}
