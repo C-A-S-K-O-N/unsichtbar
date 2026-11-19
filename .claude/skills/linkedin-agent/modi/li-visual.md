@@ -18,6 +18,13 @@ ein schwarzes Band mit roter Schaltfläche. Fusszeile in Mono, Grossbuchstaben.
 
 Alternative: der dunkle Premium-Stil unten (für Motive mit Handy und Lichtschein).
 
+**Persönlicher Markenfilm (35 bis 45 s, mit Ton):** Vorlage `linkedin-visuals/film/`
+(«Beyond the Classroom», Kyrill). Editorial: Mitternachtsblau, Elfenbein, Champagner-Gold
+nur als Haarlinie, Cormorant Garamond + Inter, Schnitte im Takt (80 BPM), Originalmusik aus
+`film/audio.py` (FluidSynth + FluidR3_GM, MIT), Geräusche synthetisch, -16 LUFS. Ohne
+Firmenlogo. Eigene Fotos nur aus `privat/` (nie einchecken), fehlende Szenen klar als
+Illustration, nie ein erzeugtes Gesicht. Storyboard und Schnittplan: `film/BEYOND-THE-CLASSROOM.md`.
+
 ### Dunkler Premium-Stil
 
 - **Format:** 4:5, 1080 × 1350. Standbild als PNG in doppelter Auflösung,
