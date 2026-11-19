@@ -58,8 +58,8 @@ Durchgehend: oben links «BEYOND THE CLASSROOM», oben rechts Kapitelziffer I bi
 | F3 | Arbeitsplatz Restaurant, Laptop | nicht mehr verwendet | nur die Fassung mit unkenntlichem Bildschirm (Kundendaten) |
 | F4 | Am Tisch mit Laptop und Gesprächsskript | I | Kollege links unkenntlich und ausserhalb des Ausschnitts, Skript leicht unscharf (nicht lesbar) |
 | F5 | Meetingraum mit Arbeitsplatz und Lampe | II, IV | Notizen und Tablet leicht unscharf |
-| F6 | Laufsteg nah (Screenshot) | III | Fotograf noch offen, Nachweis ergänzen |
-| V1 | Laufsteg-Video Paris (Bildschirmaufnahme, 7,5 s: Totale, Fahrt Füsse→Gesicht, Rückansicht) | I, III, IV | Querformat-Ausschnitt ohne Balken, 60 fps mit Bewegungsinterpolation für Zeitlupe, Originalton nicht verwendet. Quelle und Nutzungsrecht noch offen (`CREDIT_VIDEO` in `beyond.html`) |
+| F6 | Laufsteg nah (Screenshot) | III | Quelle FDLA, Nachweis «Foto: FDLA» eingeblendet |
+| V1 | Laufsteg-Video Paris (Bildschirmaufnahme, 7,5 s: Totale, Fahrt Füsse→Gesicht, Rückansicht) | I, III, IV | Querformat-Ausschnitt ohne Balken, 60 fps mit Bewegungsinterpolation für Zeitlupe, Originalton nicht verwendet. Quelle FDLA, Nachweis «Video: FDLA» eingeblendet (`CREDIT_VIDEO` in `beyond.html`) |
 
 ### Fehlt, würde den Film auf Kinoniveau heben (Dreh mit Handy in 4K reicht)
 
@@ -140,7 +140,8 @@ Der Film funktioniert vollständig stumm: Jede Aussage steht im Bild.
 | 41,35 | 45,00 | *Just getting started.* | Serif 100, kursiv, zentriert |
 | 42,40 | 45,00 | KYRILL ELSENSOHN / BEYOND THE CLASSROOM · THREE WORLDS. ONE MINDSET. | Kennzeichnung |
 | 18,75 | 22,50 | FOTO: YANGZI LIU (am Abzug) | Inter 14, Versalien |
-| bei V1 | | Video-Nachweis, sobald die Quelle bestätigt ist | Inter 14, Versalien |
+| bei V1 | | VIDEO: FDLA | Inter 14, Versalien, unten links |
+| 16,50 | 18,75 | FOTO: FDLA | Inter 14, Versalien, unten links |
 
 Die Sprachen sind wie im Briefing: Kapitel I bis III Deutsch, IV bis VI Englisch.
 
