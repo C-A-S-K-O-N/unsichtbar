@@ -16,11 +16,19 @@ streichen. Sobald es drei eigene Beiträge gibt: im Chat einfügen und sagen
   Sitz in Zug. Die Seite spricht als «wir».
 - **Person, die vorkommen darf:** Bertan Findik, Partner. Kommentare, DMs und
   persönliche Reposts kommen von ihm als Person.
-- **Weitere Personen mit eigenem Profil:** Kyrill Elsensohn und Cas
-  **[bitte ergänzen: Rolle, Nachname, Hintergrund, was erzählt werden darf]**.
-  Beiträge für diese Profile in der Ich-Form, aber nur mit Erfahrungen, die
-  hier stehen oder die die Person selbst geliefert hat. Bis dahin: Meinungs-
-  und Wissensbeiträge ohne persönliche Erlebnisse.
+- **Kyrill Elsensohn (eigenes Profil, Ich-Form, Anrede «Sie»):** 18 Jahre,
+  letztes Maturajahr an der Kantonsschule Uetikon am See. Business Development
+  & Digital Marketing Manager bei digitalONLY AG (freiberuflich, seit Sep. 2026,
+  Zürich, hybrid): B2B-Vertrieb, Neukundengewinnung, Termine mit Unternehmern.
+  Vertriebsmitarbeiter bei Verling Solutions (freiberuflich, seit Sep. 2026).
+  Praktikant im Vertrieb bei Vortex Capital (Apr. 2024 bis Feb. 2026).
+  Model: Paris Fashion Week Okt. 2026, vertrat FDLA als jüngstes Model
+  (Laufsteg-Foto: Yangzi LIU, immer nennen). Ziel nach der Matura: Sales,
+  Business Development, Relationship Management, Interesse an Private Banking.
+  **Keine Bankerfahrung, nie Bankkenntnisse behaupten.** Ton: reflektiert,
+  dankbar, ehrgeizig ohne Überheblichkeit; Leitgedanke «oft der Jüngste im Raum».
+- **Cas (eigenes Profil):** **[bitte ergänzen: Rolle, Nachname, Hintergrund]**.
+  Bis dahin nur Meinungs- und Wissensbeiträge ohne persönliche Erlebnisse.
 - **Bertans Hintergrund (für Insider-Beiträge):** ab 2021 im Aussendienst als
   Digital Marketing Consultant bei einem grossen Schweizer Anbieter von
   Online-Verzeichnissen und lokaler Werbung, also Verkaufsgespräche mit KMU von
