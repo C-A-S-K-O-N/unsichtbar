@@ -1,0 +1,124 @@
+<!doctype html><html><head><meta charset="utf-8">
+<!-- Editorial-Cover «Three worlds. One mindset.» · Kyrill Elsensohn. Hochformat 1080x1350 (#P) und Querformat 1920x1080 (#L).
+     Bildquellen (lokal, nicht im Repo): build/cover/cut.png (freigestellt aus dem FDLA-Nahfoto), build/vid/v0060.jpg (FDLA-Video), privat/kyrill-meetingraum.jpg -->
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500&family=Caveat:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#101B2B;--char:#111315;--ivory:#F2EFE8;--gold:#C3A77A;--stone:#85888C}
+*{box-sizing:border-box;margin:0;padding:0}
+body{position:relative;overflow:hidden;background:var(--char);color:var(--ivory);font-family:Inter,sans-serif;-webkit-font-smoothing:antialiased}
+body.P{width:1080px;height:1350px} body.L{width:1920px;height:1080px}
+.abs{position:absolute}
+#bg{inset:0;background:radial-gradient(70% 55% at 50% 38%,#17263c 0%,#101B2B 45%,#0c121c 75%,#111315 100%)}
+/* Links: Bildung. Hohe Fenster mit Tageslicht, Notizbuch auf dem Pult */
+#win{filter:blur(9px);opacity:.75}
+#win .pane{position:absolute;inset:0;background:linear-gradient(180deg,rgba(242,239,232,.85),rgba(242,239,232,.35) 70%,rgba(242,239,232,0));}
+#win .mull{position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 88px,#0d1522 88px 104px)}
+#win .bar{position:absolute;left:0;right:0;height:16px;background:#0d1522}
+#ray{background:linear-gradient(115deg,rgba(242,239,232,0) 20%,rgba(242,239,232,.16) 38%,rgba(242,239,232,0) 56%);filter:blur(14px)}
+#desk{background:linear-gradient(180deg,#2a2018 0%,#1a1410 60%,#120e0b 100%);filter:blur(1.2px)}
+#book{transform-origin:50% 100%;filter:blur(1.4px)}
+#book .page{position:absolute;top:0;bottom:0;width:50%;background:
+  repeating-linear-gradient(180deg,transparent 0 31px,rgba(110,120,135,.35) 31px 32.5px),
+  linear-gradient(100deg,#efe9dd,#e6dfd0);box-shadow:0 30px 60px rgba(0,0,0,.55)}
+#book .l{left:0;border-radius:4px 0 0 4px;background-blend-mode:normal}
+#book .r{right:0;border-radius:0 4px 4px 0}
+#book .gut{position:absolute;left:49%;width:2%;top:0;bottom:0;background:linear-gradient(90deg,rgba(0,0,0,0),rgba(0,0,0,.28),rgba(0,0,0,0))}
+#book .hw{position:absolute;font:500 30px/32px Caveat,cursive;color:#23324a;opacity:.85}
+#pen{height:12px;border-radius:6px;background:linear-gradient(180deg,#3a3d42,#121315 60%,#2a2c30);box-shadow:0 10px 18px rgba(0,0,0,.5);filter:blur(1.2px)}
+.crop{overflow:hidden}.crop img{position:absolute;display:block}
+#eduWin{-webkit-mask-image:radial-gradient(closest-side at 42% 50%,#000 55%,transparent 100%);mask-image:radial-gradient(closest-side at 42% 50%,#000 55%,transparent 100%)}
+#eduWin img{filter:blur(5px) saturate(.5) brightness(1.55) contrast(.92) sepia(.06) hue-rotate(-8deg)}
+#eduPaper{-webkit-mask-image:radial-gradient(closest-side at 50% 50%,#000 50%,transparent 100%);mask-image:radial-gradient(closest-side at 50% 50%,#000 50%,transparent 100%)}
+#eduPaper img{filter:blur(1.4px) saturate(.55) brightness(1.25) sepia(.06)}
+/* Rechts: Laufsteg-Licht (FDLA) und Meetingraum */
+.ph{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+#run{-webkit-mask-image:linear-gradient(180deg,#000 0%,#000 45%,transparent 78%),linear-gradient(90deg,transparent 0%,#000 30%);-webkit-mask-composite:source-in;mask-composite:intersect}
+#run img{filter:blur(6px) saturate(.4) brightness(.78) contrast(1.05) sepia(.12)}
+#meet{-webkit-mask-image:radial-gradient(closest-side at 60% 50%,#000 45%,transparent 100%);mask-image:radial-gradient(closest-side at 60% 50%,#000 45%,transparent 100%)}
+#meet img{filter:blur(2.2px) saturate(.65) brightness(1.15) sepia(.1)}
+#leftfade{background:linear-gradient(90deg,rgba(16,27,43,0),rgba(16,27,43,.0) 30%,rgba(16,27,43,.75))}
+/* Person */
+#halo{background:radial-gradient(closest-side,rgba(242,239,232,.16),rgba(242,239,232,0));filter:blur(10px)}
+#shadow{background:radial-gradient(closest-side,rgba(5,8,12,.75),rgba(5,8,12,0))}
+#kyrill{filter:saturate(.86) contrast(1.04) brightness(.98) drop-shadow(0 30px 60px rgba(0,0,0,.45))}
+#kyrill img{-webkit-mask-image:var(--km);mask-image:var(--km)}
+#kyrill img{display:block;width:100%;height:auto}
+#rimL{background:linear-gradient(90deg,rgba(242,239,232,.10),transparent 40%);mix-blend-mode:screen}
+/* Grading, Abdunkelung unten für die Schrift, Korn, Vignette */
+#fadeB{left:0;right:0;bottom:0}
+#vig{inset:0;background:radial-gradient(ellipse 80% 75% at 50% 42%,transparent 55%,rgba(0,0,0,.55) 100%)}
+#grain{inset:0;opacity:.22;mix-blend-mode:overlay}
+/* Typografie */
+.mast{font:500 15px Inter;letter-spacing:.5em;text-transform:uppercase;color:var(--ivory)}
+.rule{height:1px;background:var(--gold);opacity:.7}
+.h18{font:500 128px/0.9 'Cormorant Garamond',serif;color:var(--gold);letter-spacing:-.01em}
+.hl{font:500 88px/0.98 'Cormorant Garamond',serif;letter-spacing:.06em;text-transform:uppercase;color:var(--ivory)}
+.hl i{font-style:italic;font-weight:400;text-transform:none;letter-spacing:0}
+.sub{font:400 27px/1.35 Inter;letter-spacing:.02em;color:rgba(242,239,232,.88)}
+.cred{font:400 13px Inter;letter-spacing:.22em;text-transform:uppercase;color:rgba(133,136,140,.9)}
+.lab{font:500 13px Inter;letter-spacing:.42em;text-transform:uppercase;color:rgba(242,239,232,.6)}
+</style></head><body>
+<div class="abs" id="bg"></div>
+<div class="abs crop" id="eduWin"><img src="../privat/kyrill-vorbereitung.jpg"></div>
+<div class="abs" id="ray"></div>
+<div class="abs crop" id="eduPaper"><img src="../privat/kyrill-vorbereitung.jpg"></div>
+<div class="abs" id="run"><img class="ph" src="../build/vid/v0060.jpg" style="object-position:78% 40%"></div>
+<div class="abs crop" id="meet"><img src="../privat/kyrill-meetingraum.jpg"></div>
+<div class="abs" id="leftfade"></div>
+<div class="abs" id="shadow"></div>
+<div class="abs" id="halo"></div>
+<div class="abs" id="kyrill"><img src="../build/cover/cut.png"></div>
+<div class="abs" id="fadeB"></div>
+<div class="abs" id="vig"></div>
+<svg class="abs" id="grain" width="100%" height="100%"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 .5  0 0 0 0 .5  0 0 0 0 .5  0 0 0 .9 0"/></filter><rect width="100%" height="100%" filter="url(#n)"/></svg>
+
+<div class="abs" id="mast"><div class="mast">Kyrill Elsensohn</div></div>
+<div class="abs" id="labs"></div>
+<div class="abs" id="head">
+ <div class="h18">18.</div>
+ <div class="hl">Three worlds.<br><i style="text-transform:uppercase;letter-spacing:.06em">One mindset.</i></div>
+ <div class="rule" id="hr"></div>
+ <div class="sub">Matura. Business Development. Paris Fashion Week.</div>
+</div>
+<div class="abs cred" id="cred">Porträt und Laufsteg: FDLA</div>
+
+<script>
+const L=location.hash==='#L';document.body.className=L?'L':'P';
+const S=(id,o)=>Object.assign(document.getElementById(id).style,o);
+// Fotoausschnitt: Quelle (sx,sy,sw,sh) in ein Feld (x,y,w) setzen; Höhe folgt dem Seitenverhältnis
+const SRC={w:1932,h:2576};
+const crop=(id,sx,sy,sw,sh,x,y,w)=>{const k=w/sw,e=document.getElementById(id);Object.assign(e.style,{left:x+'px',top:y+'px',width:w+'px',height:(sh*k)+'px'});
+ Object.assign(e.querySelector('img').style,{width:(SRC.w*k)+'px',height:(SRC.h*k)+'px',left:(-sx*k)+'px',top:(-sy*k)+'px'})};
+if(!L){ // Hochformat 1080 x 1350
+ crop('eduWin',220,430,1200,980,-110,70,660);
+ S('ray',{left:'-200px',top:'0',width:'900px',height:'1000px'});
+ crop('eduPaper',930,1800,900,520,-170,560,560);
+ S('run',{left:'560px',top:'0',width:'520px',height:'820px'});
+ crop('meet',820,1050,1112,1250,700,470,430);
+ S('leftfade',{display:'none'});
+ S('shadow',{left:'170px',top:'200px',width:'760px',height:'1100px'});
+ S('halo',{left:'260px',top:'150px',width:'560px',height:'520px'});
+ S('kyrill',{left:'140px',top:'-70px',width:'1122px'});document.body.style.setProperty('--km','linear-gradient(180deg,#000 0,#000 720px,rgba(0,0,0,.55) 900px,rgba(0,0,0,.12) 1080px,transparent 1250px)');
+ S('fadeB',{height:'760px',background:'linear-gradient(180deg,rgba(13,20,32,0) 0%,rgba(13,20,32,.62) 22%,rgba(12,17,26,.93) 48%,#0e131b 72%,#0e131b 100%)'});
+ S('mast',{left:'0',right:'0',top:'64px',textAlign:'center'});
+ S('head',{left:'72px',right:'72px',top:'890px',textAlign:'center'});
+ S('hr',{width:'120px',margin:'24px auto 20px'});
+ S('cred',{left:'0',right:'0',bottom:'30px',textAlign:'center'});
+}else{ // Querformat 1920 x 1080
+ crop('eduWin',220,430,1200,980,-60,20,900);
+ S('ray',{left:'-200px',top:'0',width:'1300px',height:'900px'});
+ crop('eduPaper',930,1800,900,520,200,520,560);
+ S('run',{left:'1260px',top:'0',width:'660px',height:'700px'});Object.assign(document.querySelector('#run img'),{src:'../build/vid/v0020.jpg'});document.querySelector('#run img').style.objectPosition='100% 40%';
+ crop('meet',880,700,1052,900,1340,360,600);
+ S('leftfade',{left:'0',top:'380px',width:'1000px',height:'700px',background:'radial-gradient(70% 70% at 25% 60%,rgba(12,18,28,.82),rgba(12,18,28,0))'});
+ S('shadow',{left:'780px',top:'120px',width:'640px',height:'1000px'});
+ S('halo',{left:'860px',top:'60px',width:'480px',height:'440px'});
+ S('kyrill',{left:'760px',top:'-121px',width:'950px'});document.body.style.setProperty('--km','linear-gradient(180deg,#000 0,#000 640px,rgba(0,0,0,.5) 820px,rgba(0,0,0,.1) 1000px,transparent 1150px)');
+ S('fadeB',{height:'560px',background:'linear-gradient(180deg,rgba(13,20,32,0),rgba(13,20,32,.7) 35%,rgba(12,17,26,.93) 62%,#0e131b 100%)'});
+ S('mast',{left:'90px',top:'70px'});
+ S('head',{left:'90px',top:'560px',width:'760px'});
+ document.querySelector('.h18').style.fontSize='112px';document.querySelector('.hl').style.fontSize='76px';
+ S('hr',{width:'120px',margin:'24px 0 20px'});
+ S('cred',{right:'72px',bottom:'36px'});
+}
+</script></body></html>
