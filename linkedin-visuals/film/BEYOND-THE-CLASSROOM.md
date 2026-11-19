@@ -10,10 +10,12 @@ Dateien in diesem Ordner:
 | `beyond.html` | Der Film als Bildwerk: jede Einstellung, jede Schrift, jede Bewegung, Zeit `t` in Sekunden |
 | `audio.py` | Originalmusik (MIDI, FluidSynth, FluidR3_GM, MIT-Lizenz) und Geräusche (synthetisch), Mischung, Lautheit |
 | `render_film.js` | Bild für Bild rendern, Filmkorn, Ton anlegen, MP4 schreiben |
+| `prep_media.py` | Datenschutz-Fassungen der Fotos, Laufsteg-Video als 60-fps-Einzelbilder (Zeitlupe) |
 
 Fotos liegen nur lokal in `../privat/` und werden nicht eingecheckt. Ohne sie bleiben die Fotoflächen schwarz.
 
 ```
+python3 film/prep_media.py <upload-ordner>          # -> privat/*.jpg, build/vid/*.jpg
 python3 film/audio.py                                # -> build/film-audio.wav
 node film/render_film.js video build/film-audio.wav  # -> out/film-beyond-the-classroom.mp4
 node film/render_film.js still 20.9 /pfad/%t.png     # Einzelbild zu einer Zeit
@@ -28,17 +30,17 @@ Schnitt im Takt: 80 BPM, ein Schlag = 0,75 s, ein Takt = 3 s. Jeder Schnitt lieg
 | Zeit | Kapitel | Bild | Material | Bewegung | Ton |
 |---|---|---|---|---|---|
 | 0,00–2,25 | I Kontrast | Notizbuch im Tageslicht, liniertes Papier, Handschrift «Zuhören. Fragen stellen.» schreibt sich | illustrativ (gebaut) | Schub 1,00→1,06, Lichtstreifen wandern | Klavier solo, Füller auf Papier |
-| 2,25–4,50 | I | Sitzungszimmer, Holz, Lampe | echtes Foto | Schub 1,10→1,18, leichte Seitendrift | Luftzug beim Schnitt |
-| 4,50–6,00 | I | Laufsteg, Spot öffnet sich aus dem Schwarz | echtes Foto (Yangzi LIU) | Lichtkegel 0→voll in 0,6 s | weicher Tiefton |
+| 2,25–4,50 | I | Am Tisch: Laptop, handgeschriebenes Gesprächsskript, Glasfront (Text oben) | echtes Foto F4 | Schub 1,36→1,43 nach rechts (Kollege ausserhalb) | Luftzug beim Schnitt |
+| 4,50–6,00 | I | Laufsteg-Totale: Kyrill kommt auf die Kamera zu, Spot öffnet sich aus dem Schwarz | echtes Video V1 (Echtzeit) | Lichtkegel 0→voll in 0,6 s | weicher Tiefton |
 | 6,00–7,50 | I | Titelkarte Mitternachtsblau: «18 Jahre. Drei Welten.» | Grafik | Abblende 0,45 s | Tiefton, Streicher setzen ein |
 | 7,50–11,25 | II Der Raum | Lichtschlitz wie eine Tür, öffnet auf das Sitzungszimmer, wir gehen hinein | echtes Foto | Schlitz, dann Öffnung, Schub 1,04→1,20 (POV) | Türluft, fünf Schritte |
-| 11,25–14,25 | II | Arbeitsplatz, Laptop, Restaurant mit Ausblick (Bildschirm unkenntlich) | echtes Foto (POV) | Schwenk von rechts nach links | Raumton |
-| 14,25–16,50 | III Paris | Detail: Beine, Laufsteg, Publikum unscharf | echtes Foto, Ausschnitt | Auslöser-Blitz, Neigung nach oben | Pauke, Auslöser, Publikum |
-| 16,50–18,75 | III | Detail: Gesicht und Oberkörper | echtes Foto, Ausschnitt | Auslöser, langsamer Schub | Auslöser, ferne Kameras |
+| 11,25–14,25 | II | Meetingraum mit Kyrills Arbeitsplatz: Laptop, Tablet, Notizen, Lampe | echtes Foto F5 | Schwenk von rechts nach links | Raumton |
+| 14,25–16,50 | III Paris | Kamerafahrt von den Schuhen über die Beine zum Oberkörper | echtes Video V1 (Echtzeit) | Auslöser-Blitz | Pauke, Auslöser, Publikum |
+| 16,50–18,75 | III | Nahaufnahme Gesicht, «eingefroren» durch den Auslöser | echtes Foto F6 | langsamer Schub 1,00→1,07 | Auslöser, ferne Kameras |
 | 18,75–22,50 | III | Editorial-Doppelseite: Text links, Foto als Abzug rechts, Lichtkegel | echtes Foto, ungeschnitten mit Wasserzeichen | Abzug zieht leicht zurück, Kegel atmet | Höhepunkt Musik setzt an |
-| 22,50–24,75 | IV Verbindung | Diptychon: links Laufsteg, rechts Sitzungszimmer, goldene Haarlinie zeichnet sich | beide echt | Hälften gleiten gegeneinander | Luftzug |
-| 24,75–27,75 | IV | Objektiv: Iris öffnet auf sein Gesicht, im Kreis Überblendung ins Sitzungszimmer (Kamera → Blickkontakt) | beide echt | Iris 0→100 %, Skalenring dreht | Fokusring-Klicks |
-| 27,75–30,00 | IV | Laufsteg im Spot, Lichtband wischt ins Sitzungszimmer (Spot → Geschäftsumfeld) | beide echt | Lichtwischer 0,9 s | Schimmer |
+| 22,50–24,75 | IV Verbindung | Diptychon: links Laufsteg-Totale in Zeitlupe, rechts Sitzungszimmer, goldene Haarlinie zeichnet sich | V1 (0,75×) und F2 | Hälften gleiten gegeneinander | Luftzug |
+| 24,75–27,75 | IV | Objektiv: Iris öffnet auf sein Gesicht in Zeitlupe, im Kreis Überblendung ins Sitzungszimmer (Kamera → Blickkontakt) | V1 (0,55×) und F2 | Iris 0→100 %, Skalenring dreht | Fokusring-Klicks |
+| 27,75–30,00 | IV | Rückansicht: Kyrill geht den Laufsteg hinunter, Lichtband wischt in den Meetingraum mit der leuchtenden Lampe (Spot → Geschäftsumfeld) | V1 (Echtzeit) und F5 | Lichtwischer 0,9 s | Schimmer |
 | 30,00–36,00 | V Haltung | Architektur-Korridor in feinen Linien, wir gehen ruhig vorwärts, Abblende ins Dunkel | illustrativ (gebaut) | Linien kommen auf uns zu | nur Streicher und Klavier, Schritte mit Hall, Rückwärts-Anschwellen |
 | 36,00–45,00 | VI Nächstes Kapitel | Zürich in der Dämmerung: Alpen, St. Peter, Fraumünster, Grossmünster, See mit Spiegelung | illustrativ (gebaut) | Kontur zeichnet sich in Gold, Schub 1,00→1,05 | Pauke, Auflösung nach F-Dur, Schlussakkord bei 42,0 |
 | 44,10–45,00 | VI | Abblende ins Schwarz | | | Ausklang |
@@ -51,9 +53,13 @@ Durchgehend: oben links «BEYOND THE CLASSROOM», oben rechts Kapitelziffer I bi
 
 | # | Material | Wo im Film | Hinweis |
 |---|---|---|---|
-| F1 | Laufsteg Paris, FDLA (Foto Yangzi LIU) | I, III, IV | Fotonachweis immer sichtbar, sobald das Foto im Bild ist |
-| F2 | Sitzungszimmer (ohne Personen) | I, II, IV | |
-| F3 | Arbeitsplatz Restaurant, Laptop | II | nur die Fassung mit unkenntlichem Bildschirm (Kundendaten) |
+| F1 | Laufsteg Paris, FDLA (Foto Yangzi LIU) | III (Editorial-Doppelseite) | Fotonachweis am Abzug |
+| F2 | Sitzungszimmer (ohne Personen) | II, IV | |
+| F3 | Arbeitsplatz Restaurant, Laptop | nicht mehr verwendet | nur die Fassung mit unkenntlichem Bildschirm (Kundendaten) |
+| F4 | Am Tisch mit Laptop und Gesprächsskript | I | Kollege links unkenntlich und ausserhalb des Ausschnitts, Skript leicht unscharf (nicht lesbar) |
+| F5 | Meetingraum mit Arbeitsplatz und Lampe | II, IV | Notizen und Tablet leicht unscharf |
+| F6 | Laufsteg nah (Screenshot) | III | Fotograf noch offen, Nachweis ergänzen |
+| V1 | Laufsteg-Video Paris (Bildschirmaufnahme, 7,5 s: Totale, Fahrt Füsse→Gesicht, Rückansicht) | I, III, IV | Querformat-Ausschnitt ohne Balken, 60 fps mit Bewegungsinterpolation für Zeitlupe, Originalton nicht verwendet. Quelle und Nutzungsrecht noch offen (`CREDIT_VIDEO` in `beyond.html`) |
 
 ### Fehlt, würde den Film auf Kinoniveau heben (Dreh mit Handy in 4K reicht)
 
@@ -63,7 +69,7 @@ Durchgehend: oben links «BEYOND THE CLASSROOM», oben rechts Kapitelziffer I bi
 | D2 | Kyrill betritt einen Besprechungsraum, von hinten, Tür geht auf | II | Gimbal, langsam, Gegenlicht |
 | D3 | Handschlag, Nahaufnahme | II | nur Hände, kein Logo, keine erkennbare Bank |
 | D4 | Blickkontakt am Tisch, Halbnah, Gegenüber unscharf | II, IV | mit Einverständnis des Gegenübers |
-| D5 | Echte Laufsteg- oder Backstage-Clips Paris | III | nur wenn vorhanden, nichts nachstellen |
+| D5 | Backstage-Clips Paris (Laufsteg-Video ist jetzt drin) | III | nur wenn vorhanden, nichts nachstellen |
 | D6 | Gang durch moderne Architektur (z. B. Europaallee) | V | ohne Firmenschilder im Bild |
 | D7 | Kyrill schaut auf Zürich (Lindenhof, Polyterrasse oder Zürichhorn), blaue Stunde | VI | von hinten oder im Profil |
 | D8 | Zürich Skyline, blaue Stunde, 5 s statisch | VI | ersetzt die gezeichnete Stadt |
@@ -114,7 +120,7 @@ Der Film funktioniert vollständig stumm: Jede Aussage steht im Bild.
 | Ein | Aus | Text | Stil |
 |---|---|---|---|
 | 0,45 | 2,25 | Im Klassenzimmer: / *Maturand.* | Serif 78, Tinte (auf Papier) |
-| 2,55 | 4,50 | Im Kundengespräch: / *Vertrieb.* | Serif 78 |
+| 2,55 | 4,50 | Im Kundengespräch: / *Vertrieb.* | Serif 78, oben im Bild |
 | 4,85 | 6,00 | Auf dem Laufsteg: / *Paris.* | Serif 78 |
 | 6,25 | 7,50 | 18 Jahre. / *Drei Welten.* | Serif 96, zentriert, zweite Zeile Gold |
 | 8,70 | 11,00 | Oft der Jüngste / im Raum. | Serif 78 |
@@ -133,7 +139,8 @@ Der Film funktioniert vollständig stumm: Jede Aussage steht im Bild.
 | 38,45 | 41,00 | Exploring opportunities in / Private Banking & Wealth Management. | Inter 30 |
 | 41,35 | 45,00 | *Just getting started.* | Serif 100, kursiv, zentriert |
 | 42,40 | 45,00 | KYRILL ELSENSOHN / BEYOND THE CLASSROOM · THREE WORLDS. ONE MINDSET. | Kennzeichnung |
-| immer, wenn F1 im Bild | | FOTO: YANGZI LIU | Inter 14, Versalien |
+| 18,75 | 22,50 | FOTO: YANGZI LIU (am Abzug) | Inter 14, Versalien |
+| bei V1 | | Video-Nachweis, sobald die Quelle bestätigt ist | Inter 14, Versalien |
 
 Die Sprachen sind wie im Briefing: Kapitel I bis III Deutsch, IV bis VI Englisch.
 
