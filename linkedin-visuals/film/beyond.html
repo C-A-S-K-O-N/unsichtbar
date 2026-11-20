@@ -1,0 +1,233 @@
+<!doctype html><html><head><meta charset="utf-8">
+<!-- BEYOND THE CLASSROOM · persönlicher Markenfilm Kyrill Elsensohn · 4:5, 1080 x 1350, 45 s.
+     render(t) setzt jeden Zustand aus der Zeit t (Sekunden). Fotos liegen lokal in ../privat/ (nicht im Repo). -->
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&family=Caveat:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#101B2B;--char:#111315;--ivory:#F2EFE8;--gold:#C3A77A;--stone:#85888C}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1350px;overflow:hidden;background:#000}
+body{position:relative;font-family:Inter,sans-serif;color:var(--ivory);-webkit-font-smoothing:antialiased}
+.abs{position:absolute}
+.layer{position:absolute;inset:0;overflow:hidden;opacity:0}
+.ph{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transform-origin:50% 50%}
+.serif{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;letter-spacing:-.01em}
+.it{font-style:italic;font-weight:400}
+.tx{position:absolute;left:72px;right:72px}
+.line{display:block;overflow:hidden;padding:0 0 .1em}
+.line>span{display:inline-block;will-change:transform}
+.label{font:500 15px Inter;letter-spacing:.42em;text-transform:uppercase;color:var(--stone)}
+.st{font-size:78px;line-height:1.02}
+.hair{position:absolute;height:1px;background:var(--gold);transform-origin:0 50%}
+.shade-b{position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,27,43,.55) 0%,rgba(16,27,43,0) 26%,rgba(17,19,21,0) 48%,rgba(17,19,21,.86) 78%,rgba(17,19,21,.94) 100%)}
+.grade{filter:saturate(.72) contrast(1.06) brightness(.82) sepia(.08)}
+#vig{position:absolute;inset:0;pointer-events:none;z-index:60;background:radial-gradient(ellipse 80% 72% at 50% 46%,transparent 52%,rgba(0,0,0,.5) 100%)}
+#chrome{position:absolute;left:72px;right:72px;top:62px;z-index:55;display:flex;justify-content:space-between;align-items:center}
+#black{position:absolute;inset:0;background:#000;z-index:58;opacity:0}
+</style></head><body>
+
+<!-- I · Kontrast: Notizbuch (illustrativ, Tageslicht) -->
+<div class="layer" id="nb" style="background:#e9e3d6">
+ <div class="abs" id="paper" style="inset:-12%;background:
+   linear-gradient(90deg,transparent 0 196px,rgba(133,136,140,.45) 196px 198px,transparent 198px),
+   repeating-linear-gradient(180deg,transparent 0 55px,rgba(120,128,140,.30) 55px 56.5px),
+   radial-gradient(1200px 900px at 30% 20%,#f6f1e6,#e4ddcd);transform:rotate(-4deg)"></div>
+ <div class="abs" id="hand" style="left:250px;top:330px;font:500 86px/1.2 Caveat,cursive;color:#1b2a40;transform:rotate(-4deg);transform-origin:0 0;white-space:nowrap">Zuhören.<br>&nbsp;&nbsp;Fragen stellen.</div>
+ <div class="abs" id="light" style="inset:-20%;background:repeating-linear-gradient(115deg,rgba(255,250,236,0) 0 140px,rgba(255,250,236,.55) 190px,rgba(255,250,236,0) 260px);filter:blur(18px);mix-blend-mode:soft-light"></div>
+ <div class="abs" style="inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 55%,rgba(30,28,24,.22));"></div>
+</div>
+
+<!-- Sitzungszimmer (echtes Foto) -->
+<div class="layer" id="room1"><img class="ph grade" id="room1i" src="../privat/kyrill-vorbereitung.jpg" style="transform-origin:100% 60%;filter:saturate(.75) contrast(1.06) brightness(1.0) sepia(.08)"><div class="shade-b"></div><div class="abs" style="inset:0;background:linear-gradient(180deg,rgba(11,18,29,.85),rgba(11,18,29,0) 34%)"></div></div>
+<!-- Laufsteg, Spot-Reveal (echtes Foto, Yangzi LIU) -->
+<div class="layer" id="run1" style="background:#000"><img class="ph grade vid" id="run1i" style="object-position:41% 50%"><div class="shade-b"></div></div>
+<!-- Titelkarte -->
+<div class="layer" id="card1" style="background:radial-gradient(900px 700px at 50% 40%,#16243a,#101B2B 60%,#0b1320)"></div>
+
+<!-- II · Der Raum: Tür-Schlitz, Sitzungszimmer, Arbeitsplatz (POV, Bildschirm unkenntlich) -->
+<div class="layer" id="room2" style="background:#000">
+ <img class="ph grade" id="room2i" src="../privat/kyrill-sitzungszimmer.jpg">
+ <div class="shade-b"></div>
+ <div class="abs" id="slit" style="left:539px;top:0;width:2px;height:1350px;background:var(--ivory);box-shadow:0 0 40px 8px rgba(242,239,232,.55)"></div>
+</div>
+<div class="layer" id="rest"><img class="ph grade" id="resti" src="../privat/kyrill-meetingraum.jpg" style="object-position:50% 60%;filter:saturate(.75) contrast(1.06) brightness(.95) sepia(.08)"><div class="shade-b"></div></div>
+
+<!-- III · Paris Fashion Week -->
+<div class="layer" id="pfw1" style="background:#000"><img class="ph grade vid" id="pfw1i" style="object-position:50% 50%"><div class="shade-b"></div></div>
+<div class="layer" id="pfw2" style="background:#000"><img class="ph grade" id="pfw2i" src="../privat/kyrill-laufsteg-nah.jpg" style="object-position:50% 20%;transform-origin:45% 25%"><div class="shade-b"></div></div>
+<div class="layer" id="pfw3" style="background:radial-gradient(1000px 900px at 75% 30%,#17263c,#101B2B 55%,#0b121d)">
+ <div class="abs" id="beam" style="left:430px;top:-200px;width:700px;height:1500px;background:conic-gradient(from 180deg at 50% 0%,transparent 0 160deg,rgba(242,239,232,.10) 172deg,rgba(242,239,232,.16) 180deg,rgba(242,239,232,.10) 188deg,transparent 200deg);filter:blur(10px)"></div>
+ <div class="abs" id="print" style="left:500px;top:212px;width:508px;height:794px;overflow:hidden;box-shadow:0 50px 120px rgba(0,0,0,.6)">
+  <img class="ph grade" id="pfw3i" src="../privat/kyrill-laufsteg.jpg" style="object-position:50% 50%"></div>
+ <div class="abs" style="left:500px;top:1026px;font:400 14px Inter;letter-spacing:.2em;text-transform:uppercase;color:var(--stone)" id="credit3">Foto: Yangzi LIU</div>
+</div>
+
+<!-- IV · Die Verbindung -->
+<div class="layer" id="dip" style="background:#0b121d">
+ <div class="abs" id="dipL" style="left:0;top:0;width:539px;height:1350px;overflow:hidden"><img class="ph grade vid" id="dipLi" style="object-position:43.5% 50%"></div>
+ <div class="abs" id="dipR" style="left:541px;top:0;width:539px;height:1350px;overflow:hidden"><img class="ph grade" id="dipRi" src="../privat/kyrill-sitzungszimmer.jpg" style="object-position:30% 70%"></div>
+ <div class="shade-b"></div>
+ <div class="abs" id="dipLine" style="left:539px;top:0;width:2px;height:1350px;background:var(--gold);transform-origin:50% 0"></div>
+ <div class="abs label" id="dipLabL" style="left:72px;top:150px;color:var(--ivory)">Laufsteg</div>
+ <div class="abs label" id="dipLabR" style="left:613px;top:150px;color:var(--ivory)">Kundengespräch</div>
+</div>
+<div class="layer" id="lens" style="background:radial-gradient(800px 800px at 50% 42%,#15233a,#101B2B 60%,#0a1019)">
+ <svg class="abs" id="lensRing" viewBox="0 0 760 760" style="left:160px;top:200px;width:760px;height:760px">
+  <circle cx="380" cy="380" r="372" fill="none" stroke="rgba(133,136,140,.35)" stroke-width="1"/>
+  <circle cx="380" cy="380" r="342" fill="none" stroke="rgba(195,167,122,.55)" stroke-width="1"/>
+  <g id="ticks" stroke="rgba(242,239,232,.35)" stroke-width="1.2"></g></svg>
+ <div class="abs" id="iris" style="left:230px;top:270px;width:620px;height:620px;border-radius:50%;overflow:hidden;background:#000">
+  <img class="ph grade vid" id="lensA" style="object-position:47% 0%;transform-origin:308px 87px">
+  <img class="ph grade" id="lensB" src="../privat/kyrill-sitzungszimmer.jpg" style="object-position:50% 70%;opacity:0">
+  <div class="abs" style="inset:0;border-radius:50%;box-shadow:inset 0 0 90px rgba(0,0,0,.75)"></div></div>
+</div>
+<div class="layer" id="spot" style="background:#000">
+ <img class="ph grade vid" id="spotA" style="object-position:50% 50%">
+ <img class="ph grade" id="spotB" src="../privat/kyrill-meetingraum.jpg" style="object-position:30% 25%;clip-path:inset(0 100% 0 0)">
+ <div class="abs" id="sweep" style="top:0;bottom:0;width:180px;left:-200px;background:linear-gradient(90deg,transparent,rgba(242,239,232,.5),transparent);filter:blur(16px)"></div>
+ <div class="abs" style="inset:0;background:radial-gradient(520px 900px at 50% 0%,transparent 40%,rgba(5,8,12,.78) 100%)"></div>
+ <div class="shade-b"></div>
+</div>
+
+<!-- V · Haltung: Architektur-Korridor (illustrativ) -->
+<div class="layer" id="arch" style="background:#111315"><canvas id="corr" width="1080" height="1350" class="abs" style="inset:0"></canvas></div>
+
+<!-- VI · Nächstes Kapitel: Zürich in der Dämmerung (illustrativ) -->
+<div class="layer" id="sky" style="background:#0a1019">
+ <div class="abs" style="left:0;right:0;top:0;height:1011px;background:linear-gradient(180deg,#0a111c 0%,#101B2B 48%,#1c2a40 88%,#2a3546 100%)"></div>
+ <div class="abs" id="glow" style="left:-100px;right:-100px;top:711px;height:300px;background:radial-gradient(600px 150px at 50% 100%,rgba(195,167,122,.30),transparent 70%)"></div>
+ <svg class="abs" id="city" viewBox="0 0 1080 1350" style="inset:0;width:1080px;height:1350px">
+  <path id="alps" fill="none" stroke="rgba(133,136,140,.45)" stroke-width="1.2"/>
+  <path id="town" fill="#0c1522" stroke="var(--gold)" stroke-width="1.6" stroke-linejoin="round"/>
+  <g id="refl" opacity=".10" style="filter:blur(2px)" transform="translate(0 2020) scale(1 -1)"><use href="#town"/></g>
+  <g id="water" stroke="rgba(195,167,122,.35)" stroke-width="1.2"></g>
+ </svg>
+</div>
+
+<!-- Texte -->
+<div id="texts" style="position:absolute;inset:0;z-index:40">
+ <div class="tx serif st" data-in=".45" data-out="2.25" style="top:860px;color:#16202e"><span class="line"><span>Im Klassenzimmer:</span></span><span class="line it"><span>Maturand.</span></span></div>
+ <div class="tx serif st" data-in="2.55" data-out="4.5" style="top:190px"><span class="line"><span>Im Kundengespräch:</span></span><span class="line it"><span>Vertrieb.</span></span></div>
+ <div class="tx serif st" data-in="4.85" data-out="6.0" style="top:960px"><span class="line"><span>Auf dem Laufsteg:</span></span><span class="line it"><span>Paris.</span></span></div>
+ <div class="tx serif" data-in="6.25" data-out="7.5" data-fo=".5" style="top:540px;text-align:center;font-size:96px;line-height:1.02"><span class="line"><span>18 Jahre.</span></span><span class="line it" style="color:var(--gold)"><span>Drei Welten.</span></span></div>
+
+ <div class="tx serif st" data-in="8.7" data-out="11.0" style="top:960px"><span class="line"><span>Oft der Jüngste</span></span><span class="line"><span>im Raum.</span></span></div>
+ <div class="tx serif st" data-in="11.75" data-out="14.0" style="top:960px"><span class="line"><span>Aber immer bereit,</span></span><span class="line it"><span>dazuzulernen.</span></span></div>
+
+ <div class="tx serif" data-in="14.75" data-out="16.5" style="top:900px;font-size:104px;line-height:.98"><span class="line"><span>Paris</span></span><span class="line it"><span>Fashion Week</span></span></div>
+ <div class="tx" data-in="17.0" data-out="18.75" style="top:1010px"><span class="line"><span style="font:500 54px Inter;letter-spacing:.5em">FDLA</span></span></div>
+ <div class="tx serif" data-in="19.2" data-out="22.3" data-step=".72" style="top:500px;right:600px;font-size:62px;line-height:1.12"><span class="line"><span>Eine Chance.</span></span><span class="line"><span>Ein Vertrauen.</span></span><span class="line it" style="color:var(--gold)"><span>Eine Erfahrung.</span></span></div>
+ <div class="tx label" data-in="19.0" data-out="22.3" style="top:440px;color:var(--stone)"><span class="line"><span>Paris · Oktober</span></span></div>
+
+ <div class="tx serif" data-in="23.0" data-out="24.75" style="top:1010px;text-align:center;font-size:70px"><span class="line"><span>First impressions matter.</span></span></div>
+ <div class="tx serif" data-in="25.35" data-out="27.6" style="top:1010px;text-align:center;font-size:70px"><span class="line"><span>Communication builds trust.</span></span></div>
+ <div class="tx serif" data-in="28.2" data-out="30.0" style="top:1010px;text-align:center;font-size:70px"><span class="line"><span>Consistency creates progress.</span></span></div>
+
+ <div class="tx serif st" data-in="30.6" data-out="32.75" style="top:520px;text-align:center"><span class="line"><span>Not every opportunity</span></span><span class="line"><span>becomes a yes.</span></span></div>
+ <div class="tx serif st" data-in="33.3" data-out="35.3" data-fo=".7" style="top:520px;text-align:center"><span class="line"><span>But every experience</span></span><span class="line it"><span>moves me forward.</span></span></div>
+
+ <div class="tx label" data-in="36.45" data-out="41.0" style="top:250px;color:var(--gold)"><span class="line"><span>Next Chapter</span></span></div>
+ <div class="tx serif" data-in="36.85" data-out="41.0" data-step=".8" style="top:300px;font-size:74px;line-height:1.06"><span class="line"><span>Sales. Business Development.</span></span><span class="line it"><span>Relationship Management.</span></span></div>
+ <div class="tx" data-in="38.45" data-out="41.0" style="top:500px;right:200px"><span class="line"><span style="font:300 30px/1.4 Inter;color:var(--ivory)">Exploring opportunities in</span></span><span class="line"><span style="font:400 30px/1.4 Inter;color:var(--ivory)">Private Banking &amp; Wealth Management.</span></span></div>
+
+ <div class="tx serif it" data-in="41.35" data-out="45" data-fo=".1" style="top:380px;text-align:center;font-size:100px"><span class="line"><span>Just getting started.</span></span></div>
+ <div class="tx" data-in="42.4" data-out="45" data-fo=".1" style="top:540px;text-align:center"><span class="line"><span class="label" style="color:var(--ivory);font-size:17px">Kyrill Elsensohn</span></span><span class="line"><span class="label" style="font-size:15px;letter-spacing:.3em">Beyond the Classroom · Three worlds. One mindset.</span></span></div>
+</div>
+
+<div class="abs" id="credit" style="left:72px;bottom:150px;z-index:41;font:400 14px Inter;letter-spacing:.2em;text-transform:uppercase;color:rgba(242,239,232,.6)">Foto: Yangzi LIU</div>
+<div id="chrome"><span class="label" id="ttl" style="color:var(--ivory);opacity:.85">Beyond the Classroom</span><span class="serif it" id="chap" style="font-size:26px;color:var(--gold)">I</span></div>
+<div class="hair" id="rule" style="left:72px;right:72px;top:104px;opacity:.5;z-index:55"></div>
+<div id="black"></div>
+<div id="vig"></div>
+
+<script>
+const cl=(x,a=0,b=1)=>Math.max(a,Math.min(b,x)), R=(t,a,d)=>cl((t-a)/d);
+const eo=x=>1-Math.pow(1-x,3), eio=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2, sio=x=>-(Math.cos(Math.PI*x)-1)/2;
+const $=id=>document.getElementById(id);
+const SH={nb:[0,2.25],room1:[2.25,4.5],run1:[4.5,6.0],card1:[6.0,7.5,0,.45],room2:[7.5,11.25],rest:[11.25,14.25,0,.25],
+ pfw1:[14.25,16.5],pfw2:[16.5,18.75],pfw3:[18.75,22.5],dip:[22.5,24.75],lens:[24.75,27.75],spot:[27.75,30.0],
+ arch:[30.0,36.0,.6,.8],sky:[36.0,45.0,1.2,0]};
+const CHAP=[[0,'I'],[7.5,'II'],[14.25,'III'],[22.5,'IV'],[30,'V'],[36,'VI']];
+// Kamera: langsame Schübe (Skalierung + Versatz), linear-weich über die Einstellung
+const cam=(el,t,a,b,s0,s1,x0=0,y0=0,x1=0,y1=0)=>{const p=sio(R(t,a,b-a));el.style.transform=`translate(${x0+(x1-x0)*p}px,${y0+(y1-y0)*p}px) scale(${s0+(s1-s0)*p})`};
+// Texte: Zeilen steigen aus einer Maske, kurze Unschärfe, Abgang weich
+const TX=[...document.querySelectorAll('.tx')].map(e=>({e,i:+e.dataset.in,o:+e.dataset.out,fo:+(e.dataset.fo||.3),st:+(e.dataset.step||.14),ls:[...e.querySelectorAll('.line>span')]}));
+// Tick-Ring der Linse
+(()=>{let g='';for(let i=0;i<120;i++){const a=i/120*Math.PI*2,r1=352,r2=i%10?360:372;g+=`<line x1="${380+Math.cos(a)*r1}" y1="${380+Math.sin(a)*r1}" x2="${380+Math.cos(a)*r2}" y2="${380+Math.sin(a)*r2}"/>`}$('ticks').innerHTML=g})();
+// Zürich (stilisiert): Alpen, Altstadt mit St. Peter, Fraumünster, Grossmünster
+(()=>{const H=1010;
+ const alps=[[0,905],[60,880],[120,895],[190,850],[250,872],[320,838],[380,868],[450,846],[520,876],[600,826],[660,858],[730,834],[800,866],[880,842],[950,872],[1020,852],[1080,878]];
+ $('alps').setAttribute('d','M'+alps.map(p=>p.join(' ')).join(' L'));
+ const P=[[0,H],[0,958],[40,958],[40,944],[70,930],[100,944],[100,952],[136,952],[136,760],[152,744],[168,744],[168,700],[176,668],[184,700],[184,744],[200,760],[200,940],[232,940],[232,926],[262,906],[292,926],[292,944],
+  [326,944],[326,760],[338,748],[338,700],[345,640],[352,700],[352,748],[364,760],[364,936],[390,936],[420,916],[450,936],[470,936],[470,900],[520,900],
+  [540,900],[540,736],[548,728],[548,704],[560,690],[566,672],[572,690],[584,704],[584,728],[592,736],[592,880],[624,880],[624,736],[632,728],[632,704],[644,690],[650,672],[656,690],[668,704],[668,728],[676,736],[676,900],
+  [720,900],[720,930],[752,912],[784,930],[784,946],[820,946],[820,920],[860,904],[900,920],[900,944],[960,944],[960,930],[1000,914],[1040,930],[1080,930],[1080,H]];
+ $('town').setAttribute('d','M'+P.map(p=>p.join(' ')).join(' L')+' Z');
+ let w='';for(let i=0;i<34;i++){const y=1030+i*9+(i*i)%7,x=(i*197)%900,l=60+(i*53)%160;w+=`<line x1="${x}" y1="${y}" x2="${x+l}" y2="${y}"/>`}$('water').innerHTML=w;
+ const town=$('town'),L=town.getTotalLength();town.style.strokeDasharray=L;town.dataset.len=L})();
+// Korridor (Fluchtpunkt, wir gehen langsam vorwärts)
+const cx=$('corr').getContext('2d');
+function corridor(t){const W=1080,Hh=1350,vx=540,vy=560,f=520;cx.clearRect(0,0,W,Hh);cx.lineWidth=1;
+ const z0=(t-30)*0.9;
+ cx.strokeStyle='rgba(133,136,140,.28)';[[0,0],[W,0],[0,Hh],[W,Hh],[0,vy+300],[W,vy+300]].forEach(([x,y])=>{cx.beginPath();cx.moveTo(vx,vy);cx.lineTo(x,y);cx.stroke()});
+ for(let k=0;k<26;k++){let z=((k*1.2-z0)%31.2+31.2)%31.2+0.6;const s=f/z/2.2,a=cl(1-z/30)*cl((z-.6)*1.4);
+  const x1=vx-s*2.0,x2=vx+s*2.0,y1=vy-s*1.6,y2=vy+s*2.3;
+  cx.strokeStyle=`rgba(242,239,232,${(.22*a).toFixed(3)})`;cx.beginPath();cx.moveTo(x1,y1);cx.lineTo(x1,y2);cx.moveTo(x2,y1);cx.lineTo(x2,y2);cx.stroke();
+  if(k%3===0){cx.strokeStyle=`rgba(195,167,122,${(.25*a).toFixed(3)})`;cx.beginPath();cx.moveTo(x1,y2);cx.lineTo(x2,y2);cx.stroke()}}
+ const g=cx.createRadialGradient(vx,vy,0,vx,vy,140);g.addColorStop(0,'rgba(242,239,232,.10)');g.addColorStop(1,'rgba(242,239,232,0)');cx.fillStyle=g;cx.fillRect(0,0,W,Hh)}
+
+// Laufsteg-Video (echte Aufnahme): Einzelbilder 60 fps in ../build/vid/, Quellzeit = s0 + (t - a) * tempo
+const VN=442,VIDS=[['run1i',4.5,6.0,0.10,1.0],['pfw1i',14.25,16.5,1.76,1.0],['dipLi',22.5,24.75,0.0,0.75],['lensA',24.75,26.6,4.78,0.31],['spotA',27.75,29.6,5.45,1.0]];
+const CREDIT_VIDEO='Video: FDLA', CREDIT_NAH='Foto: FDLA';   // Quellen bestätigt (FDLA)
+function vids(t){const ps=[];VIDS.forEach(([id,a,b,s0,sp])=>{if(t<a-.05||t>=b)return;const el=$(id),i=Math.max(0,Math.min(VN,Math.round((s0+(t-a)*sp)*60)));
+  const src='../build/vid/v'+String(i).padStart(4,'0')+'.jpg';if(el.dataset.f!==src){el.dataset.f=src;el.src=src;ps.push(el.decode().catch(()=>{}))}});return Promise.all(ps)}
+window.render=function(t){
+ // Einstellungen: harte Schnitte, wo nicht anders angegeben
+ for(const id in SH){const [a,b,fi=0,fo=0]=SH[id];let o=t>=a&&t<b?1:0;if(o&&fi)o*=eo(R(t,a,fi));if(o&&fo)o*=1-R(t,b-fo,fo);$(id).style.opacity=o.toFixed(3)}
+ // I
+ cam($('paper'),t,0,2.25,1.0,1.06,0,0,-20,-10);$('hand').style.clipPath=`inset(-20px ${(100-100*eio(R(t,.25,1.6))).toFixed(2)}% -20px 0)`;
+ $('light').style.transform=`translateX(${-60+t*40}px)`;
+ cam($('room1i'),t,2.25,4.5,1.36,1.43,0,0,-10,0);
+ cam($('run1i'),t,4.5,6.0,1.0,1.05);
+ const sp=eo(R(t,4.5,.6));$('run1i').style.webkitMaskImage=$('run1i').style.maskImage=`radial-gradient(${200+900*sp}px ${260+1100*sp}px at 47% 48%,#000 55%,transparent 100%)`;
+ // II
+ const d=R(t,7.75,.75);$('slit').style.opacity=(t<7.55?R(t,7.5,.05):1-R(t,8.2,.3)).toFixed(3);$('slit').style.transform=`scaleY(${eo(R(t,7.5,.3))})`;
+ $('room2i').style.clipPath=`inset(0 ${(50-50*eio(d)).toFixed(2)}% 0 ${(50-50*eio(d)).toFixed(2)}%)`;
+ cam($('room2i'),t,7.5,11.25,1.04,1.20,0,0,0,30);
+ cam($('resti'),t,11.25,14.25,1.08,1.16,30,0,-30,-10);
+ // III
+ const fl=k=>{const x=t-k;return x>=0&&x<.22?(.55*Math.exp(-x*22)):0};
+ cam($('pfw1i'),t,14.25,16.5,1.0,1.03);
+ cam($('pfw2i'),t,16.5,18.75,1.0,1.07);
+ cam($('print'),t,18.75,22.5,1.0,1.04,0,24,0,0);cam($('pfw3i'),t,18.75,22.5,1.10,1.0);
+ $('beam').style.opacity=(.6+.4*Math.sin(t*1.3)).toFixed(3);
+ // IV
+ cam($('dipLi'),t,22.5,24.75,1.0,1.04);cam($('dipRi'),t,22.5,24.75,1.22,1.28,0,40,0,-30);
+ $('dipL').style.transform=`translateY(${(1-eo(R(t,22.5,.8)))*-80}px)`;$('dipR').style.transform=`translateY(${(1-eo(R(t,22.5,.8)))*80}px)`;
+ $('dipLine').style.transform=`scaleY(${eio(R(t,22.6,.9))})`;['dipLabL','dipLabR'].forEach((k,i)=>{$(k).style.opacity=(eo(R(t,23.0+i*.2,.6))*(1-R(t,24.5,.25))).toFixed(3)});
+ const ir=eio(R(t,24.8,.8));$('iris').style.clipPath=`circle(${(ir*50).toFixed(2)}% at 50% 50%)`;
+ $('lensRing').style.transform=`rotate(${(t-24.75)*6}deg) scale(${.96+.04*eo(R(t,24.75,1))})`;
+ cam($('lensA'),t,24.75,26.6,2.4,2.5,2,122,2,122);cam($('lensB'),t,26.0,27.75,1.15,1.22);$('lensB').style.opacity=sio(R(t,26.05,.5)).toFixed(3);
+ cam($('spotA'),t,27.75,30.0,1.0,1.05);cam($('spotB'),t,27.75,30.0,1.15,1.21);
+ const sw=eio(R(t,28.55,.9));$('spotB').style.clipPath=`inset(0 ${(100-100*sw).toFixed(2)}% 0 0)`;$('sweep').style.left=(-200+1300*sw)+'px';$('sweep').style.opacity=(sw>0&&sw<1?1:0);
+ // V
+ if(t>=30&&t<36)corridor(t);
+ // VI
+ cam($('city'),t,36,45,1.0,1.05,0,10,0,-6);$('glow').style.opacity=(.4+.6*eo(R(t,36,4))).toFixed(3);
+ const tw=$('town');tw.style.strokeDashoffset=(+tw.dataset.len*(1-eio(R(t,36.2,3.2)))).toFixed(1);
+ $('alps').style.opacity=eo(R(t,36.6,2.5)).toFixed(3);
+ [...$('water').children].forEach((l,i)=>{l.style.opacity=(.4+.6*Math.sin(t*1.7+i*1.3)**2).toFixed(3)});
+ // Texte
+ TX.forEach(({e,i,o,fo,st,ls})=>{const on=t>=i-0.05&&t<o;e.style.visibility=on?'visible':'hidden';if(!on)return;const out=fo>0.11?1-R(t,o-fo,fo):(t>=o?0:1);
+  ls.forEach((s,k)=>{const p=R(t,i+k*st,1.0),q=eo(p);s.style.transform=`translateY(${((1-q)*105).toFixed(1)}%)`;s.style.opacity=(cl(p*1.6)*out).toFixed(3);s.style.filter=p<1?`blur(${((1-q)*6).toFixed(2)}px)`:'none'})});
+ // Rahmen: Titelzeile, Kapitel, Fotonachweis, Schwarzblenden
+ const ch=CHAP.filter(c=>t>=c[0]).pop();$('chap').textContent=ch[1];
+ $('chrome').style.opacity=(eo(R(t,.2,.8))*(1-R(t,40.6,.6))).toFixed(3);$('rule').style.transform=`scaleX(${eio(R(t,.3,1.4))})`;$('rule').style.opacity=(.5*(1-R(t,40.6,.6))).toFixed(3);
+ const nbOn=t<2.25;$('ttl').style.color=nbOn?'#16202e':'var(--ivory)';$('rule').style.background=nbOn?'#9c8a6a':'var(--gold)';
+ const cv=VIDS.some(([id,a,b])=>t>=a&&t<b),cn=t>=16.5&&t<18.75,ct=cn?CREDIT_NAH:cv?CREDIT_VIDEO:'';if($('credit').textContent!==ct)$('credit').textContent=ct;$('credit').style.opacity=ct?'1':'0';
+ $('black').style.opacity=R(t,44.1,.8).toFixed(3);
+ // Blitz des Auslösers (weiss, kurz)
+ const f=Math.max(fl(14.25),fl(16.5),fl(18.75));document.body.style.background='#000';$('vig').style.background=f>0?`rgba(255,255,255,${f.toFixed(3)})`:'';
+ return vids(t);
+};
+window.END=45;
+</script></body></html>
