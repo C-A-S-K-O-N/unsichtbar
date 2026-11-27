@@ -1,5 +1,5 @@
 /* Unsichtbar · AR-Effekte
-   Baut pro Station: Scan-Effekt, Video, Karten mit Linien, 3D-Objekt, Partikel und Quiz.
+   Baut pro Station: Scan-Effekt, Video, gezeichnete Karten mit Pfeilen, 3D-Objekt und Partikel.
    Texte, Positionen und Zeiten stehen in index.html unter "Einstellungen". */
 (() => {
 const T = AFRAME.THREE;
@@ -123,7 +123,65 @@ function canvasTex(w, h) {
   const tex = new T.CanvasTexture(cv);
   tex.colorSpace = T.SRGBColorSpace;
   tex.anisotropy = 4;
-  return { cv, ctx: cv.getContext('2d'), tex, w, h };
+  // seed: jede Fläche wackelt anders, aber bei jedem Neuzeichnen gleich
+  return { cv, ctx: cv.getContext('2d'), tex, w, h, seed: Math.floor(Math.random() * 1e9) };
+}
+
+// ---------- Skizzen-Look: Linien wie von Hand gezeichnet ----------
+// Zufall mit festem Startwert, damit die Striche beim Neuzeichnen nicht springen
+let rnd = Math.random;
+function seedRnd(seed) {
+  let a = seed >>> 0;
+  rnd = () => { a = (a + 0x6D2B79F5) >>> 0; let t = Math.imul(a ^ (a >>> 15), 1 | a); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+}
+const jit = a => (rnd() * 2 - 1) * a;
+// Ein Strich mit leichtem Bogen, zweimal gezogen wie mit einem Stift
+function sketchLine(ctx, x1, y1, x2, y2, amp = 2.5) {
+  for (let pass = 0; pass < 2; pass++) {
+    const a = pass ? amp * 1.4 : amp;
+    ctx.beginPath();
+    ctx.moveTo(x1 + jit(a), y1 + jit(a));
+    ctx.bezierCurveTo(lerp(x1, x2, 0.3) + jit(a), lerp(y1, y2, 0.3) + jit(a),
+                      lerp(x1, x2, 0.7) + jit(a), lerp(y1, y2, 0.7) + jit(a), x2 + jit(a), y2 + jit(a));
+    ctx.stroke();
+  }
+}
+// Rechteck mit Strichen, die an den Ecken etwas überstehen
+function sketchRect(ctx, x, y, w, h, amp) {
+  const o = 6;
+  sketchLine(ctx, x - o, y, x + w + o, y, amp);
+  sketchLine(ctx, x + w, y - o, x + w, y + h + o, amp);
+  sketchLine(ctx, x + w + o, y + h, x - o, y + h, amp);
+  sketchLine(ctx, x, y + h + o, x, y - o, amp);
+}
+// Fläche mit leicht welligen Rändern, wie ausgeschnittenes Papier
+function sketchFill(ctx, x, y, w, h, amp = 2.5) {
+  const pts = [[x, y], [x + w, y], [x + w, y + h], [x, y + h]];
+  ctx.beginPath();
+  pts.forEach(([px, py], i) => {
+    const [nx, ny] = pts[(i + 1) % 4];
+    const n = Math.max(2, Math.round(Math.hypot(nx - px, ny - py) / 80));
+    for (let k = 0; k < n; k++) {
+      const f = k / n;
+      ctx[i || k ? 'lineTo' : 'moveTo'](lerp(px, nx, f) + jit(amp), lerp(py, ny, f) + jit(amp));
+    }
+  });
+  ctx.closePath();
+  ctx.fill();
+}
+// Gekritzelter Unterstrich, k = wie weit er schon gezeichnet ist (0 bis 1)
+function scribble(ctx, x, y, len, k, width = 6) {
+  const n = 14, ys = [];
+  for (let i = 0; i <= n; i++) ys.push(jit(2.2));      // immer gleich viele Zufallswerte, egal wie weit k ist
+  const back = jit(3);
+  ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.lineWidth = width;
+  const draw = (dy, upto) => {
+    ctx.beginPath();
+    for (let i = 0; i <= n * upto; i++) ctx[i ? 'lineTo' : 'moveTo'](x + len * i / n, y + dy + ys[i] + Math.sin(i * 0.9) * 1.5);
+    ctx.stroke();
+  };
+  if (k > 0) draw(0, clamp01(k * 1.4));
+  if (k > 0.6) { ctx.globalAlpha = 0.7; ctx.lineWidth = width * 0.6; draw(7 + back, clamp01((k - 0.6) / 0.4) * 0.85); ctx.globalAlpha = 1; }
 }
 const fadeMat = (map, extra) => new T.MeshBasicMaterial(Object.assign({ map, transparent: true, opacity: 0 }, extra));
 
@@ -137,12 +195,16 @@ function wrapText(ctx, text, maxW) {
   if (cur) out.push(cur);
   return out;
 }
-function paperFrame(c, bg = COL.paper) {
+// Papier mit welligem Rand und einem Rahmen wie von Hand gezeichnet
+function paperFrame(c, bg = COL.paper, line = COL.ink) {
   const { ctx, w, h } = c;
+  seedRnd(c.seed);
   ctx.clearRect(0, 0, w, h);
-  ctx.fillStyle = bg; ctx.fillRect(0, 0, w, h);
-  ctx.strokeStyle = COL.ink; ctx.lineWidth = 4; ctx.strokeRect(2, 2, w - 4, h - 4);
-  ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic'; ctx.globalAlpha = 1;
+  ctx.globalAlpha = 1;
+  ctx.fillStyle = bg; sketchFill(ctx, 6, 6, w - 12, h - 12, 3);
+  ctx.strokeStyle = line; ctx.lineWidth = 3; ctx.lineCap = 'round';
+  sketchRect(ctx, 14, 14, w - 28, h - 28, 2.5);
+  ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic';
 }
 // Zählt alle Zahlen in einem Text von 0 hoch, Format bleibt gleich ("2'000 l", "1,56 Mio.", "7 bis 15 %")
 function countUp(str, k) {
@@ -166,7 +228,7 @@ function drawFront(c, f, s) {
   paperFrame(c);
   ctx.fillStyle = COL.ink; ctx.font = `500 104px ${FONT}`;
   ctx.fillText(num, 44, 158);
-  ctx.fillStyle = COL.acc; ctx.fillRect(44, 186, 120 * line, 6);
+  ctx.strokeStyle = COL.acc; scribble(ctx, 44, 188, Math.min(ctx.measureText(num).width, 300), line);
   ctx.fillStyle = COL.ink; ctx.font = `400 34px ${FONT}`;
   wrapText(ctx, f.text, 712).forEach((l, i) => {
     ctx.globalAlpha = clamp01(text * 1.6 - i * 0.5);
@@ -184,7 +246,7 @@ function drawBack(c, f) {
   paperFrame(c);
   ctx.fillStyle = COL.grey; ctx.font = `600 22px ${FONT}`;
   ctx.fillText('MEHR DAZU', 44, 70);
-  ctx.fillStyle = COL.acc; ctx.fillRect(44, 90, 60, 5);
+  ctx.strokeStyle = COL.acc; scribble(ctx, 44, 92, 150, 1, 5);
   ctx.fillStyle = COL.ink; ctx.font = `500 40px ${FONT}`;
   wrapText(ctx, f.more, 712).forEach((l, i) => ctx.fillText(l, 44, 160 + i * 52));
   ctx.fillStyle = COL.grey; ctx.font = `400 22px ${FONT}`;
@@ -201,48 +263,45 @@ function drawHeader(c, st) {
   ctx.fillText(st.title, 300, 124);
   c.tex.needsUpdate = true;
 }
-function drawQuestion(c, st, open) {
-  const { ctx, w, h } = c;
-  ctx.clearRect(0, 0, w, h);
-  ctx.fillStyle = COL.ink; ctx.fillRect(0, 0, w, h);
+function drawQuestion(c, st) {
+  const { ctx, w } = c;
+  paperFrame(c, COL.ink, COL.paper);
   ctx.textAlign = 'center'; ctx.fillStyle = COL.paper; ctx.font = `600 54px ${FONT}`;
-  ctx.fillText(st.question, w / 2, 102);
-  ctx.fillStyle = '#b9b6ae'; ctx.font = `400 26px ${FONT}`;
-  ctx.fillText(open ? 'Quiz schliessen ▴' : 'Antippen für ein Quiz ▾', w / 2, 160);
+  ctx.fillText(st.question, w / 2, 112);
+  const tw = ctx.measureText(st.question).width;
+  ctx.strokeStyle = COL.acc; scribble(ctx, (w - tw) / 2, 140, tw, 1, 5);
   ctx.textAlign = 'left';
   c.tex.needsUpdate = true;
 }
-const QUIZ_BOX = [36, 352, 668].map(x => ({ x, y: 236, w: 296, h: 104 }));
-function drawQuiz(c, q, chosen) {
-  const { ctx, w } = c;
-  paperFrame(c);
-  ctx.fillStyle = COL.grey; ctx.font = `600 22px ${FONT}`;
-  ctx.fillText('QUIZ', 44, 62);
-  ctx.fillStyle = COL.ink; ctx.font = `600 38px ${FONT}`;
-  wrapText(ctx, q.q, 912).forEach((l, i) => ctx.fillText(l, 44, 118 + i * 48));
-  QUIZ_BOX.forEach((b, i) => {
-    let fill = null, stroke = COL.ink, txt = COL.ink, mark = '';
-    if (chosen != null) {
-      if (i === q.right) { fill = COL.ink; txt = COL.paper; mark = '✓ '; }
-      else if (i === chosen) { stroke = COL.acc; txt = COL.acc; mark = '✗ '; }
-      else { stroke = COL.line; txt = COL.grey; }
-    }
-    if (fill) { ctx.fillStyle = fill; ctx.fillRect(b.x, b.y, b.w, b.h); }
-    ctx.strokeStyle = stroke; ctx.lineWidth = 4; ctx.strokeRect(b.x, b.y, b.w, b.h);
-    const label = mark + q.a[i];
-    let size = 32;
-    do { ctx.font = `500 ${size}px ${FONT}`; size -= 2; } while (ctx.measureText(label).width > b.w - 28 && size > 18);
-    ctx.fillStyle = txt; ctx.textAlign = 'center';
-    ctx.fillText(label, b.x + b.w / 2, b.y + b.h / 2 + 11);
-    ctx.textAlign = 'left';
-  });
-  if (chosen == null) {
-    ctx.fillStyle = COL.grey; ctx.font = `400 26px ${FONT}`;
-    ctx.fillText('Tippe auf eine Antwort', 44, 420);
-  } else {
-    ctx.fillStyle = COL.ink; ctx.font = `400 30px ${FONT}`;
-    const head = chosen === q.right ? 'Richtig! ' : 'Nicht ganz. ';
-    wrapText(ctx, head + q.info, 912).forEach((l, i) => ctx.fillText(l, 44, 410 + i * 42));
+// Gezeichneter roter Pfeil vom Plakat zur Karte, k = wie weit er schon gezeichnet ist
+function drawArrow(c, k) {
+  const sig = step(k, 16);
+  if (c.sig === sig) return;
+  c.sig = sig;
+  const { ctx, w, h } = c;
+  seedRnd(c.seed);
+  ctx.clearRect(0, 0, w, h);
+  // Geschwungener Bogen: startet unten am Plakat, wölbt sich nach oben, endet an der Karte
+  const n = 20, pts = [];
+  const p0 = [14, h * 0.78], pc = [w * 0.45, h * 0.02], p1 = [w - 18, h * 0.62];
+  for (let i = 0; i <= n; i++) {
+    const t = i / n, u = 1 - t;
+    pts.push([u * u * p0[0] + 2 * u * t * pc[0] + t * t * p1[0] + jit(2),
+              u * u * p0[1] + 2 * u * t * pc[1] + t * t * p1[1] + jit(2.5)]);
+  }
+  const head = [jit(0.12), jit(0.12)];
+  ctx.strokeStyle = COL.acc; ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.lineWidth = 7;
+  const upto = Math.round(n * sig);
+  if (upto > 0) {
+    ctx.beginPath();
+    for (let i = 0; i <= upto; i++) ctx[i ? 'lineTo' : 'moveTo'](...pts[i]);
+    ctx.stroke();
+  }
+  if (sig >= 1) {   // Pfeilspitze: zwei schnelle Striche entlang der Endrichtung
+    const [ex, ey] = pts[n], dirA = Math.atan2(p1[1] - pc[1], p1[0] - pc[0]);
+    [Math.PI - 0.5 + head[0], Math.PI + 0.5 + head[1]].forEach(a => {
+      ctx.beginPath(); ctx.moveTo(ex, ey); ctx.lineTo(ex + Math.cos(dirA + a) * 34, ey + Math.sin(dirA + a) * 34); ctx.stroke();
+    });
   }
   c.tex.needsUpdate = true;
 }
@@ -592,7 +651,6 @@ function buildStation(st, i) {
 
   // Karten
   const cards = [];
-  let qGroup, qEl, qTex, questionTex;
   LAYOUT.forEach((c, k) => {
     const g = new T.Group(), flip = new T.Group();
     g.add(flip);
@@ -613,20 +671,25 @@ function buildStation(st, i) {
       drawFront(cd.front, f, cd.s); drawBack(back, f);
       addPlane(cd.front.tex, false); addPlane(back.tex, true);
       tappable(g, () => flipCard(cd));
-      // rote Linie vom Plakatrand zur Karte
+      // gezeichneter roter Pfeil vom Plakatrand zur Karte
       const sgn = Math.sign(c.x);
-      const start = new T.Vector3(sgn * 0.52, c.y, 0.012);
-      const end = new T.Vector3(-sgn * c.w / 2, 0, 0).applyAxisAngle(new T.Vector3(0, 1, 0), deg(c.rot)).add(new T.Vector3(c.x, c.y, c.z));
+      const start = new T.Vector3(sgn * 0.5, c.y, 0.06);   // knapp vor dem Videorand
+      // Ziel: oben auf die Karte, damit der Bogen über der Karte sichtbar ist (die Karte selbst verdeckt die Lücke zum Plakat)
+      const end = new T.Vector3(-sgn * c.w * 0.15, c.h / 2 + 0.01, 0).applyAxisAngle(new T.Vector3(0, 1, 0), deg(c.rot)).add(new T.Vector3(c.x, c.y, c.z));
       const dir = end.sub(start);
-      cd.len = dir.length();
-      const lineMat = new T.MeshBasicMaterial({ color: COL.acc, transparent: true, depthWrite: false });
-      const geo = new T.PlaneGeometry(1, 0.005);
-      geo.translate(0.5, 0, 0);
-      cd.line = new T.Mesh(geo, lineMat);
+      const len = dir.length();
+      cd.arrow = canvasTex(512, 160);
+      drawArrow(cd.arrow, 0);
+      const geo = new T.PlaneGeometry(len, 0.13);
+      geo.translate(len / 2, 0, 0);
+      cd.line = new T.Mesh(geo, new T.MeshBasicMaterial({ map: cd.arrow.tex, transparent: true, depthWrite: false, side: T.DoubleSide }));
       cd.line.position.copy(start);
-      cd.line.quaternion.setFromUnitVectors(new T.Vector3(1, 0, 0), dir.normalize());
-      cd.dot = new T.Mesh(new T.CircleGeometry(0.011, 20), lineMat);
-      cd.dot.position.copy(start);
+      // Pfeil liegt auf der Linie Plakat → Karte, ist aber so gedreht, dass man ihn von vorne sieht (Bogen nach oben)
+      const xA = dir.normalize(), yA = new T.Vector3(0, 0, 1).cross(xA).normalize();
+      if (yA.y < 0) yA.negate();
+      cd.line.quaternion.setFromRotationMatrix(new T.Matrix4().makeBasis(xA, yA, xA.clone().cross(yA)));
+      cd.dot = new T.Mesh(new T.CircleGeometry(0.011, 20), new T.MeshBasicMaterial({ color: COL.acc, transparent: true, depthWrite: false }));
+      cd.dot.position.set(start.x, start.y - 0.036, start.z);   // dort, wo der Bogen beginnt
       R.add(cd.line, cd.dot);
     } else if (c.card === 'header') {
       const t = canvasTex(1000, 200);
@@ -634,25 +697,10 @@ function buildStation(st, i) {
       addPlane(t.tex, false);
       R.add(g);
     } else if (c.card === 'frage') {
-      questionTex = canvasTex(1000, 200);
-      drawQuestion(questionTex, st, false);
-      addPlane(questionTex.tex, false);
-      tappable(g, () => { if (cd.ready) setQuiz(!st.quizOpen); });
-      // Quiz klappt unter der Frage auf
-      qTex = canvasTex(1000, 520);
-      const qH = c.w * 520 / 1000;
-      const qGeo = new T.PlaneGeometry(c.w, qH);
-      qGeo.translate(0, -qH / 2, 0);
-      qGroup = new T.Group();
-      qGroup.add(new T.Mesh(qGeo, fadeMat(qTex.tex, { opacity: 1 })));
-      qGroup.position.set(c.x, c.y - c.h / 2 - 0.02, c.z);
-      qEl = tappable(qGroup, hit => {
-        if (!st.quizOpen || st.quizChosen != null || !hit || !hit.uv) return;
-        const x = hit.uv.x * 1000, y = (1 - hit.uv.y) * 520;
-        QUIZ_BOX.forEach((b, j) => {
-          if (x >= b.x && x <= b.x + b.w && y >= b.y && y <= b.y + b.h) { st.quizChosen = j; drawQuiz(qTex, st.quiz, j); }
-        });
-      });
+      const t = canvasTex(1000, 200);
+      drawQuestion(t, st);
+      addPlane(t.tex, false);
+      R.add(g);
     }
     cards.push(cd);
   });
@@ -666,18 +714,6 @@ function buildStation(st, i) {
       cd.flip.rotation.y = lerp(from, to, e);
       cd.flip.position.z = Math.sin(raw * Math.PI) * 0.08;
     } });
-  }
-
-  function setQuiz(open) {
-    st.quizOpen = open;
-    drawQuestion(questionTex, st, open);
-    qEl.classList.toggle('tap', open);
-    qGroup.visible = true;
-    const from = qGroup.scale.y;
-    stopTweens(tag + 'q');
-    tween(tag + 'q', { dur: open ? 600 : 350, ease: open ? 'outBack' : 'inCubic',
-      update: k => { qGroup.scale.y = Math.max(tiny, lerp(from, open ? 1 : 0, k)); },
-      done: () => { if (!open) qGroup.visible = false; } });
   }
 
   // 3D-Objekt
@@ -708,7 +744,7 @@ function buildStation(st, i) {
   const parts = makeParticles(st.particles);
   R.add(parts.mesh);
 
-  st.root = root; st.tag = tag; st.taps = taps; st.qEl = qEl;
+  st.root = root; st.tag = tag; st.taps = taps;
 
   st.reset = () => {
     stopTweens(tag);
@@ -721,11 +757,8 @@ function buildStation(st, i) {
       cd.mats.forEach(mm => { mm.opacity = 0; });
       Object.assign(cd.s, { n: 0, line: 0, text: 0, hint: 0 });
       if (cd.fact) drawFront(cd.front, cd.fact, cd.s);
-      if (cd.line) { cd.line.scale.x = tiny; cd.dot.scale.setScalar(tiny); }
+      if (cd.line) { drawArrow(cd.arrow, 0); cd.dot.scale.setScalar(tiny); }
     });
-    st.quizOpen = false; st.quizChosen = null;
-    qGroup.visible = false; qGroup.scale.y = tiny;
-    drawQuiz(qTex, st.quiz, null); drawQuestion(questionTex, st, false);
     model.reset(); m.s = tiny;
     parts.fade = 0;
   };
@@ -752,8 +785,8 @@ function buildStation(st, i) {
         cd.ready = true;
         tween(tag, { dur: 800, ease: 'inOutCubic', update: k => { cd.bob = k; } });
       } });
-      if (cd.line) tween(tag, { delay: c.delay + 150, dur: 600, update: (k, raw) => {
-        cd.line.scale.x = Math.max(tiny, cd.len * k);
+      if (cd.line) tween(tag, { delay: c.delay + 150, dur: 700, ease: 'inOutCubic', update: (k, raw) => {
+        drawArrow(cd.arrow, k);
         cd.dot.scale.setScalar(Math.max(tiny, clamp01(raw * 3)));
       } });
       if (fact) tween(tag, { delay: c.delay + 500, dur: 1400, update: (k, raw) => {
@@ -798,7 +831,7 @@ function activate(st) {
   const follow = st.root.components['follow-anchor'];
   follow.snap = true; follow.active = true;
   st.root.setAttribute('visible', 'true');
-  st.taps.forEach(el => { if (el !== st.qEl) el.classList.add('tap'); });
+  st.taps.forEach(el => el.classList.add('tap'));
   st.reset();
   st.intro();
   if (!hintShown) {

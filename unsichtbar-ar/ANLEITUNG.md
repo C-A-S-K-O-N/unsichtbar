@@ -7,7 +7,7 @@ Fertiges WebAR-Projekt mit drei Stationen. Besucher scannen am Eingang einen QR-
 | Ordner / Datei | Inhalt |
 |---|---|
 | `index.html` | Die AR-Seite. Oben im Script stehen alle Texte und Einstellungen |
-| `ar.js` | Die Effekte (Scan, Karten, 3D-Objekte, Partikel, Quiz). Muss man normalerweise nicht anfassen |
+| `ar.js` | Die Effekte (Scan, gezeichnete Karten und Pfeile, 3D-Objekte, Partikel). Muss man normalerweise nicht anfassen |
 | `vorschau.html` | Alle Videos ohne Kamera (Backup, falls AR nicht klappt) |
 | `quellen.html` | Alle Quellen mit Links |
 | `eingang.html` | Eingangsschild A4 mit QR-Code, wird automatisch erzeugt |
@@ -62,21 +62,20 @@ Gute Plakate für die Erkennung haben viele Details, harte Kanten und keine sich
 
 1. **Scan:** Eine rote Linie fährt über das Plakat, die Höhenlinien leuchten auf («Unsichtbares wird sichtbar»).
 2. **3D-Objekt:** Aus der Mitte wächst ein Objekt und öffnet sich: ein Akku mit Lithium und Kobalt (01), ein T-Shirt, das sich mit 2'700 l Wasser füllt (02), eine Kakaoschote, die aufklappt (03). Danach schwebt es rechts unten weiter.
-3. **Karten:** Titel und Fakten-Karten fliegen aus dem Plakat und klappen auf, rote Linien verbinden sie mit dem Plakat. Die Zahlen zählen von 0 hoch.
+3. **Karten:** Titel und Fakten-Karten im Skizzen-Look fliegen aus dem Plakat und klappen auf, rote Pfeile zeichnen sich vom Plakat zu den Karten. Die Zahlen zählen von 0 hoch.
 4. **Partikel:** Salzkristalle steigen auf (01), Textilfasern ziehen vorbei (02), Kakaobohnen fallen (03).
 5. **Video:** Das Video hebt sich mit einem Schatten aus dem Plakat.
 6. **Frage:** Unten erscheint die Frage.
 
 Antippen kann man:
 - **Fakten-Karten:** drehen sich um und zeigen auf der Rückseite einen weiteren Fakt (alles aus `quellen.html`).
-- **Frage:** klappt ein Quiz mit drei Antworten auf.
 - **3D-Objekt:** fliegt nochmals in die Mitte und spielt die Animation erneut ab.
 
 ## Texte und Einstellungen ändern
 
 Alles steht in `index.html` ganz oben im Script:
 
-- `STATIONS`: alle Texte pro Station, also Fakten (`big` = grosse Zahl, `text`, `src` = Quelle), Rückseite (`more`, `moreSrc`), Frage und Quiz (`right` = Nummer der richtigen Antwort, gezählt ab 0).
+- `STATIONS`: alle Texte pro Station, also Fakten (`big` = grosse Zahl, `text`, `src` = Quelle), Rückseite (`more`, `moreSrc`) und die Frage (`question`).
 - `LAYOUT`: Positionen der Karten und wann sie erscheinen.
 - `TIMING`: Ablauf in Millisekunden.
 - `MODEL_REST`: wo das 3D-Objekt nach seinem Auftritt schwebt.
