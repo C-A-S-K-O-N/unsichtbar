@@ -1,0 +1,5 @@
+Bei digitalONLY in Zug verantworte ich {Bereich, z. B. Kundenberatung und Vertrieb}. Wir sorgen dafür, dass lokale Betriebe in der Schweiz auf Google Maps, in der Google-Suche und in KI-Antworten gefunden werden.
+
+{Zahl} Google-Unternehmensprofile aufgebaut oder überarbeitet.
+{Beleg mit Zahl, z. B. Anrufe über Google Maps bei einer Praxis innert drei Monaten: +{Zahl} %}
+{Zahl} Google-Ads-Kampagnen für lokale Betriebe betreut.
